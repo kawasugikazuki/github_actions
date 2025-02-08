@@ -12,8 +12,7 @@ jobs:
       - name: Send message to Slack
         run: |
           curl -X POST -H 'Content-type: application/json' \
-               --data '{"text": "📢 おはよう！今日の TIL 
-を書く時間だよ！"}' \
+               --data '{"text": "📢 おはよう！今日の TIL を書く時間だよ！"}' \
                ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Create GitHub Issue
