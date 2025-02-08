@@ -1,6 +1,9 @@
 name: 📢 Daily Slack & GitHub Issue Reminder
 
 on:
+  push:                   # ← push したら即時実行
+    branches:
+      - main
   schedule:
     - cron: "0 0 * * *"  # 毎朝 9 時に実行（UTC のため JST は 18 時）
 
