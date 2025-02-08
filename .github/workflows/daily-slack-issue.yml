@@ -28,10 +28,10 @@ jobs:
             const today = new Date().toISOString().split('T')[0];
             const issueTitle = `Daily Reminder: ${today}`;
             const issueBody = 'This is an automated daily reminder issue. Please take the necessary actions.';
-            const { data: issue } = await github.rest.issues.create({
+            const issue = await github.rest.issues.create({
               owner: owner,
               repo: repo,
               title: issueTitle,
               body: issueBody,
             });
-            console.log(`Created issue ${issue.number}: ${issue.title}`);
+
