@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository  # ✅ これを追加
+        uses: actions/checkout@v3  # リポジトリのファイルを取得
+        
       - name: Send message to Slack
         run: |
           curl -X POST -H 'Content-type: application/json' \
