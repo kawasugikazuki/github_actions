@@ -1,0 +1,27 @@
+name: 📢 Daily Slack & GitHub Issue Reminder
+
+on:
+  schedule:
+    - cron: "0 9 * * *"  # 毎朝 9 時に実行（UTC のため JST は 18 時）
+
+jobs:
+  notify_and_create_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 🔔 1️⃣ Slack にリマインダーを送る
+      - name: Send message to Slack
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+               --data '{"text": "📢 おはよう！今日の TIL 
+を書く時間だよ！"}' \
+               ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # 📝 2️⃣ GitHub Issues に「TILを書く Issue」を作成
+      - name: Create GitHub Issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          filename: .github/ISSUE_TEMPLATE.md
+
